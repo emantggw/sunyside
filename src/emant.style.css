@@ -1,17 +1,20 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+:root {
+  --soft-red: hsl(7, 99%, 70%);
+  --light-red: hsl(7, 69%, 82%);
+  --yellow: hsl(51, 100%, 49%);
+  --dark-desaturated: hsl(167, 40%, 24%);
+  --dark-blue: hsl(198, 62%, 26%);
+  --dark-modrate: hsl(168, 40%, 67%);
 
-ul {
-  list-style-position: none;
-}
-img {
-  max-width: 100%;
-}
-p {
-  line-height: 1.6;
+  --very-dark-saturated-blue: hsl(212, 27%, 19%);
+  --very-dark-grayish-blue: hsl(213, 9%, 39%);
+  --dark-grayish-blue: hsl(232, 10%, 55%);
+  --grayish-blue: hsl(210, 4%, 67%);
+  --white: hsl(0, 0%, 100%);
+  --body_color: #eff3f2;
+
+  --main_color: rgb(70, 192, 248);
+  --sub_color: rgb(189, 238, 14);
 }
 h1,
 h2,
@@ -25,24 +28,7 @@ body {
   font-family: "Barlow", sans-serif;
 }
 
-:root {
-  --soft-red: hsl(7, 99%, 70%);
-  --yellow: hsl(51, 100%, 49%);
-  --dark-desaturated: hsl(167, 40%, 24%);
-  --dark-blue: hsl(198, 62%, 26%);
-  --dark-modrate: hsl(168, 34%, 41%);
-
-  --very-dark-saturated-blue: hsl(212, 27%, 19%);
-  --very-dark-grayish-blue: hsl(213, 9%, 39%);
-  --dark-grayish-blue: hsl(232, 10%, 55%);
-  --grayish-blue: hsl(210, 4%, 67%);
-  --white: hsl(0, 0%, 100%);
-  --body_color: #eff3f2;
-
-  --main_color: rgb(70, 192, 248);
-  --sub_color: rgb(189, 238, 14);
-}
-/*Layouts*/
+/*Layouts with media */
 .row::after {
   content: "";
   clear: both;
@@ -281,49 +267,17 @@ body {
     opacity: 0.3;
   }
 }
-/* Add Animation */
-@-webkit-keyframes animateleft {
+
+/** Some animations**/
+@keyframes opacityChange {
   from {
-    left: -300px;
     opacity: 0;
   }
   to {
-    left: 0px;
-    opacity: 1;
+    opacity: 0.8;
   }
 }
 
-@keyframes animateleft {
-  from {
-    left: -300px;
-    opacity: 0;
-  }
-  to {
-    left: 0px;
-    opacity: 1;
-  }
-}
-@-webkit-keyframes animatetop {
-  from {
-    top: -300px;
-    opacity: 0;
-  }
-  to {
-    top: 0px;
-    opacity: 1;
-  }
-}
-
-@keyframes animatetop {
-  from {
-    top: -300px;
-    opacity: 0;
-  }
-  to {
-    top: 0px;
-    opacity: 1;
-  }
-}
 /*
 Logo
 */
@@ -336,9 +290,18 @@ Logo
   margin: 10px;
 }
 
+/* General link */
+a:hover {
+  cursor: pointer;
+  animation-name: letterSpacing;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+}
+
 /*
   ==MENU bar
-  */
+*/
 
 .menu-bar {
   overflow: hidden;
@@ -365,9 +328,7 @@ Logo
   margin: 6px 0px;
   transition: 0.4s;
 }
-/* .menu-bar .bar {
-  float: left;
-} */
+
 .menu-bar a {
   color: #f2f2f2;
   text-align: center;
@@ -383,12 +344,6 @@ Logo
   border-radius: 15px;
   color: var(--very-dark-saturated-blue);
 }
-.menu-bar a:hover {
-  animation-name: letterSpacing;
-  animation-duration: 0.4s;
-  animation-fill-mode: forwards;
-  animation-timing-function: ease-in-out;
-}
 
 /*
  Asynchrones Transform
@@ -397,7 +352,6 @@ Logo
 .change .bar1 {
   -webkit-transform: rotate(-45deg) translate(-9px, 6px);
   transform: rotate(-45deg) translate(-9px, 6px);
-  background-color: var(--very-dark-saturated-blue);
 }
 .change .bar2 {
   opacity: 0;
@@ -405,18 +359,35 @@ Logo
 .change .bar3 {
   -webkit-transform: rotate(45deg) translate(-9px, -6px);
   transform: rotate(45deg) translate(-9px, -6px);
-  background-color: var(--very-dark-saturated-blue);
 }
 
 .open a {
   content: "";
   clear: both;
   display: table;
+  transition: max-height 0.6s ease-in;
 }
+.menu-list {
+  background-color: hsl(0, 0%, 100%);
+  width: 80%;
+  margin: auto;
+  margin-top: 50px;
+}
+
+.menu-list a {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  background-color: transparent;
+  color: var(--very-dark-saturated-blue);
+}
+
+/*
+Sunnyside specific
+*/
 
 .auto-header {
   background-image: url("./images/image-header.jpg");
-  background-repeat: no-repeat;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -442,6 +413,32 @@ Logo
   justify-content: center;
   align-items: center;
 }
+
+/* Sunyy link*/
+
+.info-link {
+  display: flex;
+  justify-content: left;
+  margin-top: 15px;
+  text-decoration: none;
+  color: black;
+  font-family: "Franuces", sans-serif;
+  font-size: 20px;
+  text-transform: uppercase;
+  font-weight: 900;
+  width: 180px;
+}
+.info-link-border {
+  border-bottom: 15px solid var(--light-red);
+  border-radius: 10px;
+  display: block;
+  position: relative;
+  margin-left: -15px;
+  margin-top: -15px;
+  z-index: -1;
+  width: 180px;
+}
+
 .transform {
   object-fit: cover;
   height: 512px;
@@ -454,11 +451,7 @@ Logo
 .transform .transform-text p {
   font-size: 16px;
   color: var(--very-dark-grayish-blue);
-}
-.transform-text h1,
-h2,
-h3 {
-  font-family: "Fraunces", serif;
+  margin-top: 40px;
 }
 
 .product-transform {
@@ -503,6 +496,89 @@ h3 {
   justify-content: center;
 }
 
+.client-testimonials {
+  color: var(--grayish-blue);
+}
+.client-testimonials p {
+  color: var(--very-dark-grayish-blue);
+  margin-top: 30px;
+}
+.client-testimonials h4 {
+  display: flex;
+  justify-content: center;
+  text-transform: uppercase;
+}
+
+.client-testimonials .client-profile-img {
+  margin-left: 40%;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+}
+.clientInfo {
+  margin-top: 25px;
+}
+.client-testimonials .clientInfo h3,
+h6 {
+  display: flex;
+  justify-content: center;
+}
+.clients {
+  margin-top: 40px;
+}
+.footer {
+  background-color: var(--dark-modrate);
+  color: var(--dark-desaturated);
+  min-height: 300px;
+}
+.footer .footer-text {
+  font-weight: bolder;
+  font-family: "Barlow", sans-serif;
+  display: flex;
+  justify-content: center;
+}
+.footer h1 {
+  margin-top: 40px;
+}
+.footer .footer-links {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  color: var(--dark-desaturated);
+  font-size: 18px;
+}
+.footer-links a {
+  margin-left: 30px;
+}
+
+.footer .footer-social {
+  margin-top: 70px;
+  display: flex;
+  justify-content: center;
+  color: var(--dark-desaturated);
+}
+.footer-social img {
+  width: 25px;
+  margin-left: 20px;
+}
+
+/** Reseting important layout compatibility**/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+ul {
+  list-style-position: none;
+}
+img {
+  max-width: 100%;
+}
+p {
+  line-height: 1.6;
+}
+
+/** Confirming device **/
 /*Mobile First design*/
 
 @media only screen and (max-width: 512px) {
@@ -512,66 +588,28 @@ h3 {
     transition: max-height 0.6s ease-out;
   }
   .banner {
-    font-size: 25px; /* for mobile */
+    /* Adjusting banner Mottos font size for mobile */
+    font-size: 25px;
+  }
+  .menu-bar a.active {
+    background-color: var(--yellow);
   }
 }
+
+/**  Dekstops ...*/
 @media only screen and (min-width: 512px) {
   .bar {
     display: none;
   }
+  [class*="col-"] {
+    float: right;
+  }
   .menus {
     display: flex;
     justify-content: right;
+    padding: 15px;
   }
   .mobile-header {
     display: none;
   }
-}
-
-/*
-    UI Components
-
- */
-@keyframes opacityChange {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 0.8;
-  }
-}
-
-.menu-list {
-  background-color: hsl(0, 0%, 100%);
-  width: 80%;
-  margin: auto;
-  margin-top: 50px;
-}
-
-.menu-list a {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  background-color: transparent;
-  color: var(--very-dark-saturated-blue);
-}
-[class*="btn-"] {
-  border: none;
-  transition: opacity 0.4s ease-in-out, letter-spacing 0.2s ease-in;
-  color: whitesmoke;
-  cursor: pointer;
-  font-size: 18px;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  letter-spacing: 2px;
-  margin-bottom: 10px;
-  margin: 3px;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "Franuces", sans-serif;
 }
